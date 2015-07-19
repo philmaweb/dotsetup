@@ -8,6 +8,8 @@
 ##First Steps:
 * install git
 * install vim
+* install curl 
+        sudo apt-get install git vim curl -y
 
 ##execute:
 ```bash
