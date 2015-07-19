@@ -1,5 +1,9 @@
 #dotsetup
-##WARNING: This will overwrite ~./vim/colors , ~./.vim/bundle, ~/.gitconfig and ~/.vimrc
+##WARNING: This will overwrite:
+* __~/.vimrc__
+* __~/.gitconfig__
+* __~./vim/colors__
+* __~./.vim/bundle__
 
 ##First Steps:
 * install git
