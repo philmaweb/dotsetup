@@ -1,11 +1,11 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Let Vundle manage Vundle
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " My Plugins
 Plugin 'tpope/vim-sensible'
@@ -25,6 +25,7 @@ Plugin 'klen/python-mode'
 " Plugin 'hynek/vim-python-pep8-indent'
 " Plugin 'nvie/vim-flake8'
 
+call vundle#end()            " required
 filetype plugin indent on
 
 " <leader> is mapped to ,
@@ -53,9 +54,11 @@ set autoindent
 syntax on
 set nobackup 
 set noswapfile
+
+" solarized
 let g:solarized_termcolors=256
-set background=dark
 colorscheme solarized
+set background=dark
 
 " Automatic formatting
 autocmd BufWritePre *.rb :%s/\s\+$//e
@@ -76,6 +79,12 @@ autocmd VimEnter * set nosc
 
 " Quick ESC
 imap jj <ESC>
+
+" control t tabnew
+nnoremap <C-t> :tabnew<Space>
+inoremap <C-t> <Esc>:tabnew<Space>
+" control w close tab 
+nnoremap <C-w> :tabclose<Space>
 
 " Jump to the next row on long lines
 map <Down> gj
