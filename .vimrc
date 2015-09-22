@@ -3,28 +3,29 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
-" call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
+call vundle#begin()
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" The following are examples of different formats supported.
+" My Plugins
+Plugin 'tpope/vim-sensible'
+Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-fugitive'
+Plugin 'Lokaltog/vim-powerline'
 Plugin 'scrooloose/syntastic'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
+Plugin 'rking/ag.vim'
+Plugin 'kana/vim-textobj-user'
+Plugin 'slim-template/vim-slim'
 Plugin 'andviro/flake8-vim'
+" adds autocomplete function and Breakpoint func
 Plugin 'klen/python-mode'
+" Plugin 'hynek/vim-python-pep8-indent'
 
-" All of your Plugins must be added before the following line
 call vundle#end()            " required
 
-filetype plugin indent on    " required
+filetype plugin indent on
 " To ignore plugin indent changes, instead use:
-"filetype plugin on
 "
 " Brief help
 " :PluginList       - lists configured plugins
@@ -57,12 +58,47 @@ set hlsearch
 set ignorecase
 set smartcase
 
+set autoindent
 syntax on
+set nobackup 
+set noswapfile
 
-syntax enable
+" solarized
+let g:solarized_termcolors=256
 colorscheme solarized
 set background=dark
-" let g:solarized_termcolors=256
+
+" Automatic formatting
+autocmd BufWritePre *.rb :%s/\s\+$//e
+autocmd BufWritePre *.go :%s/\s\+$//e
+autocmd BufWritePre *.haml :%s/\s\+$//e
+autocmd BufWritePre *.html :%s/\s\+$//e
+autocmd BufWritePre *.scss :%s/\s\+$//e
+autocmd BufWritePre *.slim :%s/\s\+$//e
+
+au BufNewFile * set noeol
+au BufRead,BufNewFile *.go set filetype=go
+
+" No show command
+autocmd VimEnter * set nosc
+
+" dele a word with ^+w in insert mode
+:imap <C-d> <C-[>diwi
+
+" Quick ESC
+imap jj <ESC>
+
+" control t tabnew
+nnoremap <C-t> :tabnew<Space>
+inoremap <C-t> <Esc>:tabnew<Space>
+" control w close tab 
+nnoremap <C-w> :tabclose<Space>
+
+" Jump to the next row on long lines
+map <Down> gj
+map <Up>   gk
+nnoremap j gj
+nnoremap k gk
 
 :command WQ wq
 :command Wq wq
