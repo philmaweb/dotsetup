@@ -1,7 +1,12 @@
 #!/bin/sh                                                                       
 
 echo "Starting Setup" && \
-mv -f ~/.vimrc ~/.vimrc.old && \
+if [ ! -f ~/.vimrc ]; then
+  touch ~/.vimrc
+fi
+if [ ! -f ~/.vimrc.old ]; then
+  mv -f ~/.vimrc ~/.vimrc.old &&
+fi
 cp -f ./.vimrc ~ && \
 cp -f ./.gitconfig ~ && \
 cp -f ~/.gitconfig ~/.gitconfig.old && \
