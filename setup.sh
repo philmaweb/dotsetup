@@ -9,8 +9,8 @@ if [ ! -f ~/.gitconfig ]; then
 fi
 mv -f ~/.vimrc ~/.vimrc.old
 cp -f ~/.gitconfig ~/.gitconfig.old && \
-cp -f ./.vimrc ~ && \
-cp -f ./.gitconfig ~ && \
+cp -f dotsetup/.vimrc ~ && \
+cp -f dotsetup/.gitconfig ~ && \
 rm -rf ~/.vim/bundle && \
 rm -rf ~/.vim/colors && \
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim && \
