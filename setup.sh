@@ -4,9 +4,6 @@ echo "Starting Setup" && \
 if [ ! -f ~/.vimrc ]; then
   touch ~/.vimrc
 fi
-if [ -f ~/.vimrc.old ]; then
-  mv -f ~/.vimrc ~/.vimrc.old.new
-fi
 mv -f ~/.vimrc ~/.vimrc.old
 cp -f ./.vimrc ~ && \
 cp -f ./.gitconfig ~ && \
