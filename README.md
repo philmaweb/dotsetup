@@ -17,6 +17,6 @@ sudo apt-get install git vim curl -y
 ##execute:
 ```bash
 git clone https://github.com/philmaweb/dotsetup.git
-./setup.sh
+./dotsetup/setup.sh
 ```
 Solarized colorscheme, Vundle and VIM-Addons will be installed 
