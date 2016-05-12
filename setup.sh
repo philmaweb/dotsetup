@@ -7,9 +7,11 @@ fi
 if [ ! -f ~/.gitconfig ]; then
   touch ~/.gitconfig
 fi
-mv -f ~/.vimrc ~/.vimrc.old
-cp -f ~/.gitconfig ~/.gitconfig.old && \
+mv -f ~/.vimrc ~/.vimrc.old_beforedotsetup
+mv  ~/.bashrc ~/.bashrc.old_beforedotsetup
+cp -f ~/.gitconfig ~/.gitconfig.old_beforedotsetup && \
 cp -f dotsetup/.vimrc ~ && \
+cp dotsetup/.bashrc ~ && \
 cp -f dotsetup/.gitconfig ~ && \
 rm -rf ~/.vim/bundle && \
 rm -rf ~/.vim/colors && \
