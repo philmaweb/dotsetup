@@ -1,6 +1,6 @@
 [user]
-	    name = philmaweb
-    	email = philmaweb@gmail.com
+    name = philmaweb
+    email = philmaweb@gmail.com
 [color]
 	ui = true
 [core]
@@ -11,3 +11,5 @@
 	smudge = git media smudge %f
 [push]
 	default = simple
+[merge]
+	tool = meld
