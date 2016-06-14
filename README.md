@@ -4,7 +4,7 @@
 * __~/.gitconfig__
 * __~/.vim/colors__
 * __~/.vim/bundle__
-* __~/.bashrc
+* __~/.bashrc__
 
 ##First Steps:
 * install git
