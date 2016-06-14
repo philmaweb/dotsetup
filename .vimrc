@@ -188,3 +188,7 @@ let g:pymode_folding = 0
 " Save and Load sessions with F2 and F3!
 map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
 map <F3> :source ~/vim_session <cr>     " And load session with F3
+" Redo syntax highlighting when loosing track on F5 "
+" use Control + l to redraw screen
+noremap <F5> <Esc>:syntax sync fromstart<CR>
+inoremap <F5> <C-o>:syntax sync fromstart<CR>
