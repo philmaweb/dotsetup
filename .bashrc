@@ -114,3 +114,6 @@ if ! shopt -oq posix; then
 fi
 #use virtualenvwrapper
 . /usr/local/bin/virtualenvwrapper.sh
+#add anaconda to path
+# added by Anaconda3 4.2.0 installer
+export PATH="/home/philipp/anaconda3/bin:$PATH"

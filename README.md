@@ -10,10 +10,23 @@
 * install git
 * install vim
 * install curl 
+* install xclip 
+* upgrade pip 
+* generate new ssh key 
 
 ```bash
-sudo apt-get install git vim curl -y
+sudo apt-get install git vim curl xclip -y
+#upgrade pip
+pip install --uprade pip
+#generate new ssh Key
+ssh-keygen -t rsa -b 4096 -C "your_email@gmail.com"
+# start the ssh-agent in the background
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_rsa
+#Copies publickey into clipboard
+xclip -sel clip < ~/.ssh/id_rsa.pub
 ```
+Add the SSH key to your GitHub account
 
 ##execute:
 ```bash
@@ -26,11 +39,11 @@ Solarized colorscheme, Vundle and VIM-Addons will be installed
 
 ```bash
 #install virtualenv
-sudo pip install virtualenv
+pip install virtualenv
 #make directory to hold the virtualenvs, refrences in .bashrc
 mkdir ~/.virtualenvs
 #install virtualenvwrapper
-sudo pip install virtualenvwrapper
+pip install virtualenvwrapper
 #Set WORKON_HOME to your virtualenv dir
 export WORKON_HOME=~/.virtualenvs
 ```
