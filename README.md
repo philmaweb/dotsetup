@@ -11,11 +11,12 @@
 * install vim
 * install curl 
 * install xclip 
+* install meld 
 * upgrade pip 
 * generate new ssh key 
 
 ```bash
-sudo apt-get install git vim curl xclip -y
+sudo apt-get install git vim curl xclip meld -y
 #upgrade pip
 pip install --uprade pip
 #generate new ssh Key
@@ -30,7 +31,7 @@ Add the SSH key to your GitHub account
 
 ##execute:
 ```bash
-git clone https://github.com/philmaweb/dotsetup.git
+git clone git@github.com:philmaweb/dotsetup.git
 ./dotsetup/setup.sh
 ```
 Solarized colorscheme, Vundle and VIM-Addons will be installed 
