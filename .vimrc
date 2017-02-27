@@ -192,3 +192,6 @@ map <F3> :source ~/vim_session <cr>     " And load session with F3
 " use Control + l to redraw screen
 noremap <F5> <Esc>:syntax sync fromstart<CR>
 inoremap <F5> <C-o>:syntax sync fromstart<CR>
+" remove F1 help menu, and map to esc, instead call :help <command>
+map <F1> <Esc>
+imap <F1> <Esc>
