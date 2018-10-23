@@ -17,7 +17,7 @@ cp -f dotsetup/.vimrc ~ && \
 #rm -rf ~/.vim/colors && \
 git clone --recursive git://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim && \
 git clone --recursive git://github.com/altercation/vim-colors-solarized.git ./solarized && \
-mkdir ~/.vim/colors && \
+mkdir -p ~/.vim/colors && \
 mv ./solarized/colors/solarized.vim ~/.vim/colors/ && \
 rm -rf ./solarized
 vim +PluginInstall +qall
