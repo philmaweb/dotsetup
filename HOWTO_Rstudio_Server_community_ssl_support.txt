@@ -1,0 +1,77 @@
+# Setup Rstudio-Server community with ssl support
+# Following 2 merged tutorials https://support.rstudio.com/hc/en-us/articles/200552326-Running-with-a-Proxy and https://www.digitalocean.com/community/tutorials/how-to-configure-nginx-with-ssl-as-a-reverse-proxy-for-jenkins and 
+
+# For this to work you need to be connected to the same network as the machine you are configuring
+
+# We are assuming a debian based server architecture. The following steps assume you are connected to the Virtual Machine over a ssh session and you have sudo access.
+
+# rstudio-server should already be installed - otherwise follow the steps described on https://www.rstudio.com/products/rstudio/download-server/
+
+# install nginx
+sudo apt install nginx
+
+# Get a certificate using openssl
+
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/nginx/cert.key -out /etc/nginx/cert.crt
+
+# Edit the configuration
+
+vim /etc/nginx/sites-enabled/default
+
+# Replace the content with the following configuration, where 192.168.81.122 is your servers IP
+
+"""
+server {
+	listen 80;
+	return 301 https://$host$request_uri;
+}
+
+server {
+
+    listen 443;
+    server_name 192.168.81.122;
+
+    ssl_certificate           /etc/nginx/cert.crt;
+    ssl_certificate_key       /etc/nginx/cert.key;
+
+    ssl on;
+    ssl_session_cache  builtin:1000  shared:SSL:10m;
+    ssl_protocols  TLSv1.1 TLSv1.2;
+    ssl_ciphers HIGH:!aNULL:!eNULL:!EXPORT:!CAMELLIA:!DES:!MD5:!PSK:!RC4;
+    ssl_prefer_server_ciphers on;
+
+    access_log            /var/log/nginx/rstudio.access.log;
+
+    location / {
+
+      proxy_set_header        Host $host;
+      proxy_set_header        X-Real-IP $remote_addr;
+      proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header        X-Forwarded-Proto $scheme;
+
+      # Fix the “It appears that your reverse proxy set up is broken" error.
+      proxy_pass          http://localhost:8787;
+      proxy_read_timeout  90;
+
+      # proxy_redirect      http://localhost:8080 https://jenkins.domain.com;
+      proxy_redirect      http://localhost:8787 $scheme://$host/;
+    }
+}
+"""
+
+# RStudio server Configuration
+
+# We need to disable simple http access from anywhere in the network, and restrict it to connections only from the same host (rstudio server can only be reached from the same server via nginx)
+
+vim /etc/rstudio/rserver.conf
+
+# paste
+www-address=127.0.0.1
+
+# to load the configuration we need to restart rstudio-server
+sudo service rstudio-server restart
+
+# Now access your rstudio-server over https at 
+https://192.168.81.122
+
+# You probably need to accept warnings and trust the certificate when accessing the server for the first time, as we are using a self-signed certificate not validated by an outside entity. This certificate is also only valid for 365 days, so a new certificate needs to be created each year.
